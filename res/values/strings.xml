@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">12306Ticket</string>
+    <string name="action_settings">设置</string>
+    <string name="action_aboutus">关于我们</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="button_login">登陆</string>
+    <string name="statement">zgb</string>
+    <string name="vericodedescription">验证码</string>
+    <string name="vericodeerror">请检查验证码</string>
+    <string name="userpasserror">请检查用户名或密码</string>
+    <string name="action_search">search</string>
+    
+    <string name="searchtab">查询</string>
+    <string name="orderstab">订单</string>
+    <string name="usertab">我</string>
+    <string name="title_activity_inquiry">查询</string>
+    <string name="onewaybutton">单程</string>
+    <string name="doublewaybutton">往返</string>
+    <string name="fromplace">出发地</string>
+    <string name="toplace">目的地</string>
+    <string name="departuretime">出发日期</string>
+    <string name="backtime">返回日期</string>
+    <string name="chooseall">全部</string>
+    <string name="gdz">G/D/Z</string>
+    <string name="justz">Z字头</string>
+    <string name="justt">T字头</string>
+    <string name="justk">K字头</string>
+    <string name="othertype">其他</string>
+    
+
+</resources>

@@ -1,0 +1,190 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    		  xmlns:tools="http://schemas.android.com/tools"
+    		  android:gravity="center_horizontal"
+    		  android:layout_width="fill_parent"
+    		  android:layout_height="fill_parent"
+    		  android:layout_marginTop="30dp"
+    		  android:layout_marginBottom="10dp"
+    		  android:layout_marginLeft="5dp"
+    		  android:layout_marginRight="5dp"
+    		  android:orientation="vertical">
+    		  
+    <LinearLayout android:layout_width="fill_parent"
+        		  android:layout_height="wrap_content"
+        		  android:layout_marginLeft="25dp"
+        		  android:layout_marginRight="25dp"
+        		  android:layout_gravity="center_horizontal"
+        		  android:orientation="horizontal">
+        		  
+        <Button
+            android:id="@+id/onewaybutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#2292DD"
+            android:text="@string/onewaybutton" />
+        
+        <Button
+            android:id="@+id/doublewaybutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#808080"
+            android:text="@string/doublewaybutton" />
+
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+        		  android:layout_height="wrap_content"
+        		  android:layout_gravity="center"
+        		  android:layout_marginLeft="25dp"
+        		  android:layout_marginRight="25dp"
+        		  android:orientation="horizontal">
+        
+        <TextView android:layout_width="match_parent"
+            	  android:layout_height="wrap_content"
+            	  android:layout_weight="5"
+            	  android:gravity="left"
+            	  android:layout_gravity="bottom"
+            	  android:text="@string/fromplace"/>
+        <EditText android:id="@+id/fromplace"
+            	  android:layout_weight="3"
+            	  android:layout_width="match_parent"
+            	  android:layout_height="wrap_content"/>
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+        		  android:layout_height="wrap_content"
+        		  android:layout_gravity="center"
+        		  android:layout_marginLeft="25dp"
+        		  android:layout_marginRight="25dp"
+        		  android:orientation="horizontal">
+        
+        <TextView android:layout_width="match_parent"
+            	  android:layout_height="wrap_content"
+            	  android:layout_weight="5"
+            	  android:gravity="left"
+            	  android:layout_gravity="bottom"
+            	  android:text="@string/toplace"/>
+        <EditText android:id="@+id/toplace"
+            	  android:layout_weight="3"
+            	  android:layout_width="match_parent"
+            	  android:layout_height="wrap_content"/>
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+        		  android:layout_height="wrap_content"
+        		  android:layout_gravity="center"
+        		  android:layout_marginLeft="25dp"
+        		  android:layout_marginRight="25dp"
+        		  android:orientation="horizontal">
+        
+        <TextView android:layout_width="match_parent"
+            	  android:layout_height="wrap_content"
+            	  android:layout_weight="5"
+            	  android:gravity="left"
+            	  android:layout_gravity="bottom"
+            	  android:text="@string/departuretime"/>
+        <EditText android:id="@+id/departuretime"
+            	  android:focusable="false"
+            	  android:layout_weight="3"
+            	  android:layout_width="match_parent"
+            	  android:layout_height="wrap_content"/>
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+        		  android:layout_height="wrap_content"
+        		  android:layout_gravity="center"
+        		  android:id="@+id/backpart"
+        		  android:visibility="gone"
+        		  android:layout_marginLeft="25dp"
+        		  android:layout_marginRight="25dp"
+        		  android:orientation="horizontal">
+        
+        <TextView android:layout_width="match_parent"
+            	  android:layout_height="wrap_content"
+            	  android:layout_weight="5"
+            	  android:gravity="left"
+            	  android:layout_gravity="bottom"
+            	  android:text="@string/backtime"/>
+        <EditText android:id="@+id/backtime"
+            	  android:layout_weight="3"
+            	  android:focusable="false"
+            	  android:layout_width="match_parent"
+            	  android:layout_height="wrap_content"/>
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+        		  android:layout_height="wrap_content"
+        		  android:layout_gravity="center"
+        		  android:id="@+id/checkboxesup"
+        		  android:layout_marginTop="15dp"
+        		  android:layout_marginLeft="25dp"
+        		  android:layout_marginRight="25dp">
+        
+        <CheckBox android:layout_width="0dp"
+            	  android:layout_height="wrap_content"
+            	  android:layout_weight="1"
+            	  android:id="@+id/chooseall"
+            	  android:text="@string/chooseall"/>
+        
+        <CheckBox
+            android:id="@+id/gdz"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/gdz" />
+        
+        <CheckBox
+            android:id="@+id/justz"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/justz" />
+
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+        		  android:layout_height="wrap_content"
+        		  android:layout_gravity="center"
+        		  android:id="@+id/checkboxesdown"
+        		  android:layout_marginLeft="25dp"
+        		  android:layout_marginRight="25dp">
+        
+        <CheckBox
+            android:id="@+id/justt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/justt" />
+        
+        <CheckBox
+            android:id="@+id/justk"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/justk" />
+        
+        <CheckBox
+            android:id="@+id/othertype"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/othertype" />
+        
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+        		  android:layout_height="wrap_content"
+        		  android:layout_gravity="center"
+        		  android:layout_marginTop="15dp"
+        		  android:layout_marginLeft="25dp"
+        		  android:layout_marginRight="25dp">
+         <Button android:id="@+id/btnInquiry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/searchtab"
+            android:layout_weight="1"/>
+    </LinearLayout>
+   
+</LinearLayout>
