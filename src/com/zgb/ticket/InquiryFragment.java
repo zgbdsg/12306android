@@ -6,13 +6,6 @@ import java.util.Calendar;
 
 import org.apache.http.Header;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
@@ -33,6 +26,9 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class InquiryFragment extends Fragment{
 	
@@ -128,13 +124,16 @@ public class InquiryFragment extends Fragment{
 		});
 		
 		fromPlace = (EditText)getActivity().findViewById(R.id.fromplace);
+		fromPlace.setSelectAllOnFocus(true);
 		toPlace = (EditText)getActivity().findViewById(R.id.toplace);
+		toPlace.setSelectAllOnFocus(true);
+		
 		SharedPreferences sharedData = getActivity().getSharedPreferences("12306", 0);
 		
 		if(sharedData != null){
 			departuretime.setText(sharedData.getString("departuretime",""));
-			fromPlace.setText(sharedData.getString("fromplace",""));
-			toPlace.setText(sharedData.getString("toplace",""));
+			fromPlace.setText(sharedData.getString("fromPlace",""));
+			toPlace.setText(sharedData.getString("toPlace",""));
 		}
 		
 	}
@@ -312,22 +311,5 @@ public class InquiryFragment extends Fragment{
 		// TODO Auto-generated method stub
 		super.onStop();
 		Log.i("fragment life ", "onStop");
-	}
-
-
-
-	@Override
-	public void onSaveInstanceState(Bundle outState) {  
-		super.onSaveInstanceState(outState);
-		
-		departuretime = (EditText)getActivity().findViewById(R.id.departuretime);
-		fromPlace = (EditText)getActivity().findViewById(R.id.fromplace);
-		toPlace = (EditText)getActivity().findViewById(R.id.toplace);
-		
-		Log.i("save state ", "mainactivity");
-		outState.putString("departuretime", departuretime.getText().toString());
-		outState.putString("fromPlace", fromPlace.getText().toString());
-		outState.putString("toPlace", toPlace.getText().toString());
-		Log.i("fragment saved state",outState.toString());
 	}
 }

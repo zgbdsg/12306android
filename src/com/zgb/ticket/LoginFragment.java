@@ -97,8 +97,11 @@ public class LoginFragment extends Fragment{
 		SharedPreferences sharedData = getActivity().getSharedPreferences("12306", 0);
 		if(sharedData != null){
 			usernameText.setText(sharedData.getString("usernameText",""));
-			passwordText.requestFocusFromTouch();
+			//passwordText.requestFocus();
 		}
+		
+		usernameText.setSelectAllOnFocus(true);
+		passwordText.setSelectAllOnFocus(true);
 	}
 
 	@Override

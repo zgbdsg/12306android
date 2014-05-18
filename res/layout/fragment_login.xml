@@ -1,5 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_login"
@@ -8,6 +10,8 @@
     android:layout_marginTop="30dp"
     android:layout_marginLeft="15dp"
     android:layout_marginRight="15dp">
+    
+    <requestFocus />
     
     <EditText android:id="@+id/username"
         	  android:layout_width="match_parent"
