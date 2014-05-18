@@ -17,6 +17,7 @@
     <string name="orderstab">订单</string>
     <string name="usertab">我</string>
     <string name="title_activity_inquiry">查询</string>
+    <string name="title_activity_inquiry_result">查询结果</string>
     <string name="onewaybutton">单程</string>
     <string name="doublewaybutton">往返</string>
     <string name="fromplace">出发地</string>
@@ -30,5 +31,12 @@
     <string name="justk">K字头</string>
     <string name="othertype">其他</string>
     
-
+	<string name="kname">新空快速</string>
+	<string name="tname">新空特快</string>
+	<string name="zname">直达特快列车</string>
+	<string name="lname">临时列车</string>
+	<string name="yname">旅游列车</string>
+	<string name="common">普通列车</string>
+	
+	<string name="no_data"></string>
 </resources>

@@ -165,7 +165,7 @@ public class InquiryFragment extends Fragment{
 				shareDataEditor.putString("toPlace", toPlace.getText().toString());
 				shareDataEditor.commit();
 				
-				Intent intent = new Intent(getActivity().getApplicationContext(),InquiryActivity.class);
+				Intent intent = new Intent(getActivity().getApplicationContext(),TicketResultActivity.class);
 				intent.putExtra("result", response);
 				startActivity(intent);
             }

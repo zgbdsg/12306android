@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ticket_list_item"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:orientation="vertical" >
+    
+    <LinearLayout android:layout_width="fill_parent"
+    			  android:layout_height="wrap_content"
+    			  android:orientation="horizontal">
+        <TextView android:id="@+id/trainNum"
+        	  android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:layout_weight="1"
+        	  android:text="K8420"
+        	  android:layout_gravity="left"/>
+        
+        <TextView android:id="@+id/startTime"
+        	  android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:text="08:10"
+        	  android:layout_weight="1"
+        	  android:textColor="#ff0033"
+        	  android:layout_gravity="right"
+        	  android:gravity="right"/>
+        
+        <TextView android:id="@+id/fromStation"
+        	  android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:text="南京"
+        	  android:layout_weight="1"
+        	  android:textColor="#ff0033"
+        	  android:layout_gravity="left"/>
+        
+        <TextView android:id="@+id/period"
+        	  android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:text="1小时16分"
+        	  android:layout_weight="1"
+        	  android:layout_gravity="left"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="fill_parent"
+    			  android:layout_height="wrap_content"
+    			  android:orientation="horizontal">
+        <TextView android:id="@+id/trainType"
+        	  android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:text="普通列车"
+        	  android:layout_weight="1"
+        	  android:layout_gravity="left"/>
+        
+        <TextView android:id="@+id/finishTime"
+        	  android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:text="09:30"
+        	  android:layout_weight="1"
+        	  android:layout_gravity="right"
+        	  android:gravity="right"/>
+        
+        <TextView android:id="@+id/toStation"
+        	  android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:text="西安"
+        	  android:layout_weight="1"
+        	  android:layout_gravity="left"/>
+        
+        <TextView android:id="@+id/moneyValue"
+        	  android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:text="12.0元"
+        	  android:layout_weight="1"
+        	  android:layout_gravity="left"/>
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:background="@drawable/dotted_line_gray" />
+    
+    <LinearLayout android:layout_width="fill_parent"
+    			  android:layout_height="wrap_content"
+    			  android:orientation="horizontal">
+        <TextView android:id="@+id/ticketInfo"
+        	  android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:text="硬座（1） 软座（无） 硬卧（38）"
+        	  android:layout_weight="1"
+        	  android:layout_gravity="left"/>
+    </LinearLayout>
+</LinearLayout>
