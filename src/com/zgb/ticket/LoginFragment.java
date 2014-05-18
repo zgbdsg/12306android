@@ -12,6 +12,8 @@ import com.loopj.android.http.RequestParams;
 
 import android.support.v4.app.Fragment;  
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -42,13 +44,13 @@ public class LoginFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		return inflater.inflate(R.layout.fragment_main, container, false);  
+		return inflater.inflate(R.layout.fragment_login, container, false);  
 	}
-
+	
 	@Override
-	public void onStart() {
+	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		super.onStart();
+		super.onActivityCreated(savedInstanceState);
 		
 		Button btnlogin = (Button)getActivity().findViewById(R.id.loginbutton);
 		btnlogin.setOnClickListener(new OnClickListener() {
@@ -92,6 +94,17 @@ public class LoginFragment extends Fragment{
 			verifiCode.setEnabled(true);
 		}
 		
+		SharedPreferences sharedData = getActivity().getSharedPreferences("12306", 0);
+		if(sharedData != null){
+			usernameText.setText(sharedData.getString("usernameText",""));
+			passwordText.requestFocusFromTouch();
+		}
+	}
+
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
 	}
 	
 	/**check params :username password  verificode**/
@@ -167,8 +180,13 @@ public class LoginFragment extends Fragment{
 					return;
 				}
 				Log.i("login :", logininfo.getString("loginCheck"));
+				
+				Editor shareDataEditor = getActivity().getSharedPreferences("12306", 0).edit();
+				shareDataEditor.putString("usernameText", usernameText.getText().toString());
+				shareDataEditor.commit();
+				
 				Intent intent = new Intent(getActivity().getApplicationContext(),InquiryActivity.class);
-				//intent.putExtra(EXTRA_MESSAGE, loginMessage.getText().toString());
+				intent.putExtra("result", loginMessage.getText().toString());
 				startActivity(intent);
             }
 

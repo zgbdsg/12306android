@@ -7,9 +7,15 @@ public class TabFragmentPagerAdapter extends FragmentPagerAdapter{
 
 	private int tabsize = 3;
 	private Fragment nowFragment;
+	private InquiryFragment inquiry;
+	private OrderFragment order;
+	private LoginFragment login;
 	public TabFragmentPagerAdapter(FragmentManager fm) {
 		super(fm);
 		// TODO Auto-generated constructor stub
+		inquiry = new InquiryFragment();
+		order = new OrderFragment();
+		login = new LoginFragment();
 	}
 
 	@Override
@@ -18,18 +24,19 @@ public class TabFragmentPagerAdapter extends FragmentPagerAdapter{
 		
 		switch (arg0) {
 		case 0:
-			nowFragment = new InquiryFragment();
+			nowFragment = inquiry;
 			break;
 		case 1:
-			nowFragment = new OrderFragment();
+			nowFragment = order;
 			break;
 		case 2:
-			nowFragment = new LoginFragment();
+			nowFragment = login;
 			break;
 		default:
-			nowFragment = new InquiryFragment();
+			nowFragment = inquiry;
 			break;
 		}
+		nowFragment.setRetainInstance(true);
 		return nowFragment;
 	}
 

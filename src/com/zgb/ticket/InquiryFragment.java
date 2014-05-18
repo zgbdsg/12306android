@@ -16,6 +16,8 @@ import com.loopj.android.http.RequestParams;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -50,7 +52,6 @@ public class InquiryFragment extends Fragment{
 	private EditText toPlace;
 	private Calendar cal;
 	private OnDateSetListener datelisten;
-	private Bundle savedInstanceState;
 	
 	AsyncHttpClient httpclient = TicketHttpClient.httpclient;
 
@@ -60,14 +61,18 @@ public class InquiryFragment extends Fragment{
 		// TODO Auto-generated method stub
 		cal = Calendar.getInstance();
 		//this.savedInstanceState = savedInstanceState;
+		Log.i("fragment life ", "onCreateView");
+		//Log.i("from activity saved ", savedInstanceState.toString());
 		return inflater.inflate(R.layout.fragment_inquiry, container, false);  
 	}
 	
+	
+	
 	@Override
-	public void onStart() {
+	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		super.onStart();
-		
+		super.onActivityCreated(savedInstanceState);
+		Log.i("fragment life ", "onActivityCreated");
 		btnOneway = (Button)getActivity().findViewById(R.id.onewaybutton);
 		btnOneway.setOnClickListener(new OnClickListener() {
 			
@@ -122,13 +127,17 @@ public class InquiryFragment extends Fragment{
 			}
 		});
 		
-		if(savedInstanceState != null){
-			departuretime.setText(savedInstanceState.getString("departuretime"));
-			fromPlace.setText(savedInstanceState.getString("fromplace"));
-			toPlace.setText(savedInstanceState.getString("toplace"));
+		fromPlace = (EditText)getActivity().findViewById(R.id.fromplace);
+		toPlace = (EditText)getActivity().findViewById(R.id.toplace);
+		SharedPreferences sharedData = getActivity().getSharedPreferences("12306", 0);
+		
+		if(sharedData != null){
+			departuretime.setText(sharedData.getString("departuretime",""));
+			fromPlace.setText(sharedData.getString("fromplace",""));
+			toPlace.setText(sharedData.getString("toplace",""));
 		}
+		
 	}
-	
 	
 	public void doSearchTicket(View view) {
 	    // Do something in response to button
@@ -151,6 +160,12 @@ public class InquiryFragment extends Fragment{
 		TicketHttpClient.get(loginurl.toString(),null,new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(String response) {
+				Editor shareDataEditor = getActivity().getSharedPreferences("12306", 0).edit();
+				shareDataEditor.putString("departuretime", departuretime.getText().toString());
+				shareDataEditor.putString("fromPlace", fromPlace.getText().toString());
+				shareDataEditor.putString("toPlace", toPlace.getText().toString());
+				shareDataEditor.commit();
+				
 				Intent intent = new Intent(getActivity().getApplicationContext(),InquiryActivity.class);
 				intent.putExtra("result", response);
 				startActivity(intent);
@@ -262,5 +277,57 @@ public class InquiryFragment extends Fragment{
 			}
 		}
 		
+	}
+	
+	
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		Log.i("fragment life ", "onDestroy");
+	}
+
+
+
+	@Override
+	public void onDetach() {
+		// TODO Auto-generated method stub
+		super.onDetach();
+		Log.i("fragment life ", "onDetach");
+	}
+
+
+
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		Log.i("fragment life ", "onPause");
+	}
+
+
+
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		Log.i("fragment life ", "onStop");
+	}
+
+
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {  
+		super.onSaveInstanceState(outState);
+		
+		departuretime = (EditText)getActivity().findViewById(R.id.departuretime);
+		fromPlace = (EditText)getActivity().findViewById(R.id.fromplace);
+		toPlace = (EditText)getActivity().findViewById(R.id.toplace);
+		
+		Log.i("save state ", "mainactivity");
+		outState.putString("departuretime", departuretime.getText().toString());
+		outState.putString("fromPlace", fromPlace.getText().toString());
+		outState.putString("toPlace", toPlace.getText().toString());
+		Log.i("fragment saved state",outState.toString());
 	}
 }

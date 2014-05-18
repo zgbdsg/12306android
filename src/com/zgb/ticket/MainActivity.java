@@ -27,9 +27,6 @@ public class MainActivity extends ActionBarActivity {
 	private ViewPager viewpaper;
 	private TabFragmentPagerAdapter tabAdbter;
 	private ActionBar actionbar;
-	private EditText departuretime;
-	private EditText fromPlace;
-	private EditText toPlace;
 	
 	
 	@Override
