@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import com.loopj.android.http.AsyncHttpClient;
 
@@ -26,6 +27,10 @@ public class MainActivity extends ActionBarActivity {
 	private ViewPager viewpaper;
 	private TabFragmentPagerAdapter tabAdbter;
 	private ActionBar actionbar;
+	private EditText departuretime;
+	private EditText fromPlace;
+	private EditText toPlace;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,7 @@ public class MainActivity extends ActionBarActivity {
 		viewpaper = (ViewPager)findViewById(R.id.viewpaper);
 		tabAdbter = new TabFragmentPagerAdapter(getSupportFragmentManager());
 		viewpaper.setAdapter(tabAdbter);
+		viewpaper.setOffscreenPageLimit(3);
 		viewpaper.setOnPageChangeListener(new OnPageChangeListener() {
 			
 			@Override

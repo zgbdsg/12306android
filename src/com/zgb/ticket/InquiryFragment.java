@@ -242,11 +242,13 @@ public class InquiryFragment extends Fragment{
 			
 			if(buttonView.getText().equals("È«²¿")){
 				checkall.setChecked(isChecked);
-				gdz.setChecked(isChecked);
-				justz.setChecked(isChecked);
-				justt.setChecked(isChecked);
-				justk.setChecked(isChecked);
-				otherCheck.setChecked(isChecked);
+				if(checkall.isChecked()) {
+					gdz.setChecked(true);
+					justz.setChecked(true);
+					justt.setChecked(true);
+					justk.setChecked(true);
+					otherCheck.setChecked(true);
+				}
 				return;
 			}else{
 				buttonView.setChecked(isChecked);
