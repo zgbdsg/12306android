@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.os.Build;
 
 public class InquiryActivity extends ActionBarActivity {
@@ -21,10 +22,10 @@ public class InquiryActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_inquiry);
 
-		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
+		Bundle info = this.getIntent().getExtras();
+		String result = info.getString("result");
+		TextView inquiryResult = (TextView)findViewById(R.id.quiryresult);
+		inquiryResult.setText(result);
 	}
 
 	@Override
@@ -47,37 +48,4 @@ public class InquiryActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_inquiry,
-					container, false);
-			return rootView;
-		}
-	}
-
-	public void selectType(View view) {
-		Button oneway = (Button)findViewById(R.id.onewaybutton);
-		Button doubleway = (Button)findViewById(R.id.doublewaybutton);
-		LinearLayout backpart = (LinearLayout)findViewById(R.id.backpart);
-		
-		if(view.getId() == R.id.onewaybutton){
-			oneway.setBackgroundColor(Color.parseColor("#2292DD"));
-			doubleway.setBackgroundColor(Color.parseColor("#808080"));
-			backpart.setVisibility(8);
-		}else{
-			doubleway.setBackgroundColor(Color.parseColor("#2292DD"));
-			oneway.setBackgroundColor(Color.parseColor("#808080"));
-			backpart.setVisibility(0);
-		}
-		
-	}
 }

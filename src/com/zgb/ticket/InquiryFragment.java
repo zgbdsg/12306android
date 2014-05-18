@@ -46,18 +46,20 @@ public class InquiryFragment extends Fragment{
 	private CheckBox otherCheck;
 	
 	private EditText departuretime;
-	private EditText fromplace;
+	private EditText fromPlace;
 	private EditText toPlace;
 	private Calendar cal;
 	private OnDateSetListener datelisten;
+	private Bundle savedInstanceState;
 	
 	AsyncHttpClient httpclient = TicketHttpClient.httpclient;
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		cal = Calendar.getInstance();
+		//this.savedInstanceState = savedInstanceState;
 		return inflater.inflate(R.layout.fragment_inquiry, container, false);  
 	}
 	
@@ -65,6 +67,7 @@ public class InquiryFragment extends Fragment{
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		
 		btnOneway = (Button)getActivity().findViewById(R.id.onewaybutton);
 		btnOneway.setOnClickListener(new OnClickListener() {
 			
@@ -109,33 +112,47 @@ public class InquiryFragment extends Fragment{
 
 		initCheckBox();
 		
+		btnSearch = (Button)getActivity().findViewById(R.id.btnInquiry);
 		btnSearch.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+				doSearchTicket(v);
 			}
 		});
+		
+		if(savedInstanceState != null){
+			departuretime.setText(savedInstanceState.getString("departuretime"));
+			fromPlace.setText(savedInstanceState.getString("fromplace"));
+			toPlace.setText(savedInstanceState.getString("toplace"));
+		}
 	}
 	
 	
 	public void doSearchTicket(View view) {
 	    // Do something in response to button
 		
-		String loginurl = "/otn/leftTicket/query?%@";
-		RequestParams params = new RequestParams();
-		params.put("leftTicketDTO.train_date", departuretime.getText().toString());
-		params.put("leftTicketDTO.from_station", "XAY");
-		params.put("leftTicketDTO.to_station", "NJH");
-		params.put("purpose_codes", "ADULT");
+		StringBuffer loginurl = new StringBuffer("/otn/lcxxcx/query?");
+		//String loginurl = "/otn/lcxxcx/query?purpose_codes=ADULT&queryDate=2014-05-16&from_station=XAY&to_station=NJH";
+		//RequestParams params = new RequestParams();
+		//params.add("purpose_codes", "ADULT");
+		//params.add("queryDate", departuretime.getText().toString());
+		//params.add("from_station", "XAY");
+		//params.add("to_station", "NJH");
 		
-		TicketHttpClient.get(loginurl,params,new AsyncHttpResponseHandler(){
+		StringBuffer params = new StringBuffer();
+		params.append("purpose_codes=ADULT");
+		params.append("&queryDate="+departuretime.getText().toString());
+		params.append("&from_station=XAY");
+		params.append("&to_station=NJH");
+		
+		loginurl.append(params);
+		TicketHttpClient.get(loginurl.toString(),null,new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(String response) {
-
 				Intent intent = new Intent(getActivity().getApplicationContext(),InquiryActivity.class);
-				//intent.putExtra(EXTRA_MESSAGE, loginMessage.getText().toString());
+				intent.putExtra("result", response);
 				startActivity(intent);
             }
 

@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		//getFragmentManager().beginTransaction().replace(R.id.container,new InquiryFragment()).commit();
-		TicketHttpClient.init(this.getApplicationContext());
+		TicketHttpClient.init(this);
 		
 		
 		/*initial view paper*/

@@ -40,10 +40,10 @@ public class TicketHttpClient {
 		    }
 		
 		setCookies(context);
-		
+		httpclient.removeHeader("User-Agent");
 		httpclient.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36");
-		httpclient.addHeader("Referer", "https://kyfw.12306.cn/otn/login/init");
-		httpclient.addHeader("Origin", baseurl);
+		//httpclient.addHeader("Referer", "https://kyfw.12306.cn/otn/login/init");
+		//httpclient.addHeader("Origin", baseurl);
 	}
 	
 	public static void setCookies(Context context){
