@@ -19,6 +19,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -49,6 +51,7 @@ public class InquiryFragment extends Fragment{
 	private Calendar cal;
 	private OnDateSetListener datelisten;
 	
+	private CustomProgressDialog onLoading;
 	AsyncHttpClient httpclient = TicketHttpClient.httpclient;
 
 	@Override
@@ -136,10 +139,12 @@ public class InquiryFragment extends Fragment{
 			toPlace.setText(sharedData.getString("toPlace",""));
 		}
 		
+		onLoading = new CustomProgressDialog(getActivity());
 	}
 	
 	public void doSearchTicket(View view) {
 	    // Do something in response to button
+		onLoading.show();
 		
 		StringBuffer loginurl = new StringBuffer("/otn/lcxxcx/query?");
 		//String loginurl = "/otn/lcxxcx/query?purpose_codes=ADULT&queryDate=2014-05-16&from_station=XAY&to_station=NJH";
@@ -159,6 +164,7 @@ public class InquiryFragment extends Fragment{
 		TicketHttpClient.get(loginurl.toString(),null,new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(String response) {
+				onLoading.dismiss();
 				Editor shareDataEditor = getActivity().getSharedPreferences("12306", 0).edit();
 				shareDataEditor.putString("departuretime", departuretime.getText().toString());
 				shareDataEditor.putString("fromPlace", fromPlace.getText().toString());
@@ -176,6 +182,7 @@ public class InquiryFragment extends Fragment{
 					Throwable arg3) {
 				// TODO Auto-generated method stub
 				super.onFailure(arg0, headers, arg2, arg3);
+				onLoading.dismiss();
 			}
 
 			

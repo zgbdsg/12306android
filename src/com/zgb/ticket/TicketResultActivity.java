@@ -12,6 +12,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -28,6 +29,7 @@ public class TicketResultActivity extends ListActivity{
 	private TextView fromStation;
 	private TextView toStation;
 	private TextView ticketInfo;
+	private List<String> trainCodeList;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -35,6 +37,7 @@ public class TicketResultActivity extends ListActivity{
 		setContentView(R.layout.activity_ticket_result);
 		Bundle info = this.getIntent().getExtras();
 		String result = info.getString("result");
+		trainCodeList = new ArrayList<String>();
 		
 		List<HashMap<String, String>> listMap = getListMaps(result);
 		
@@ -48,6 +51,16 @@ public class TicketResultActivity extends ListActivity{
 
 	
 	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		
+	}
+
+
+
+
 	private List<HashMap<String, String>> getListMaps(String result){
 		List<HashMap<String, String>> listmap = new ArrayList<HashMap<String,String>>(); 
 		JSONObject jsonResult = JSON.parseObject(result);
@@ -56,6 +69,8 @@ public class TicketResultActivity extends ListActivity{
 		
 		for(int i=0;i<dataArrays.size();i ++){
 			HashMap<String, String> map = new HashMap<String, String>();
+			trainCodeList.add(dataArrays.getJSONObject(i).getString("train_no"));
+			
 			String train_num_code = dataArrays.getJSONObject(i).getString("station_train_code");
 			map.put("trainNum", train_num_code);
 			map.put("toStation", dataArrays.getJSONObject(i).getString("to_station_name"));

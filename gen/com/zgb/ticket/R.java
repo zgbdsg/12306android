@@ -1242,12 +1242,13 @@ containing a value of this type.
         public static final int activity_inquiry=0x7f030018;
         public static final int activity_main=0x7f030019;
         public static final int activity_ticket_result=0x7f03001a;
-        public static final int fragment_inquiry=0x7f03001b;
-        public static final int fragment_inquiry_result=0x7f03001c;
-        public static final int fragment_login=0x7f03001d;
-        public static final int fragment_order=0x7f03001e;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
-        public static final int view_ticket_item=0x7f030020;
+        public static final int customprogressdialog=0x7f03001b;
+        public static final int fragment_inquiry=0x7f03001c;
+        public static final int fragment_inquiry_result=0x7f03001d;
+        public static final int fragment_login=0x7f03001e;
+        public static final int fragment_order=0x7f03001f;
+        public static final int support_simple_spinner_dropdown_item=0x7f030020;
+        public static final int view_ticket_item=0x7f030021;
     }
     public static final class menu {
         public static final int inquiry=0x7f0c0000;
@@ -1311,6 +1312,7 @@ containing a value of this type.
         public static final int justz=0x7f0a0025;
         public static final int kname=0x7f0a0029;
         public static final int lname=0x7f0a002c;
+        public static final int loadingData=0x7f0a0030;
         public static final int no_data=0x7f0a002f;
         public static final int onewaybutton=0x7f0a001d;
         public static final int orderstab=0x7f0a0019;
