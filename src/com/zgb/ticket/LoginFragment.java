@@ -134,7 +134,7 @@ public class LoginFragment extends Fragment{
 		params.put("randCode", verifiCode.getText().toString());
 		params.put("rand", "sjrand");
 		Log.i("checkverificode :", params.toString());
-		TicketHttpClient.post(checkurl,params,new AsyncHttpResponseHandler(){
+		TicketHttpClient.post(getActivity(),checkurl,params,new AsyncHttpResponseHandler(){
 			
 			
 			@Override
@@ -164,7 +164,7 @@ public class LoginFragment extends Fragment{
 		params.put("userDTO.password", passwordText.getText().toString());
 		params.put("randCode", verifiCode.getText().toString());
 		
-		TicketHttpClient.post(loginurl,params,new AsyncHttpResponseHandler(){
+		TicketHttpClient.post(getActivity(),loginurl,params,new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(String response) {
                 // Pull out the first event on the public timeline
@@ -216,7 +216,7 @@ public class LoginFragment extends Fragment{
 		//String url = "https://www.google.com/images/srpr/logo11w.png";
 		String[] allowedContentTypes = new String[] { "image/png", "image/jpeg;charset=UTF-8" };
 		tmppic = null;
-		TicketHttpClient.get(url, null, new BinaryHttpResponseHandler(allowedContentTypes)
+		TicketHttpClient.get(getActivity(),url, null, new BinaryHttpResponseHandler(allowedContentTypes)
 		{
 			
 			@Override

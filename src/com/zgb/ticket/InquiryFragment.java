@@ -1,5 +1,8 @@
 package com.zgb.ticket;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -8,10 +11,13 @@ import org.apache.http.Header;
 
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -19,8 +25,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -49,8 +53,12 @@ public class InquiryFragment extends Fragment{
 	private EditText fromPlace;
 	private EditText toPlace;
 	private Calendar cal;
-	private OnDateSetListener datelisten;
 	
+	private String fromStationCode = "";
+	private String toStationCode = "";
+	
+	private OnDateSetListener datelisten;
+	private GetStationCodeTask getStationCode;
 	private CustomProgressDialog onLoading;
 	AsyncHttpClient httpclient = TicketHttpClient.httpclient;
 
@@ -65,7 +73,23 @@ public class InquiryFragment extends Fragment{
 		return inflater.inflate(R.layout.fragment_inquiry, container, false);  
 	}
 	
-	
+	@Override
+	public void onResume(){
+		super.onResume();
+		getStationCode = new GetStationCodeTask();
+		btnSearch.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				onLoading.show();
+				
+				getStationCode.execute("");
+				Log.e("begin search :", "!!!!!!!!!!");
+				
+			}
+		});
+	}
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -117,14 +141,6 @@ public class InquiryFragment extends Fragment{
 		initCheckBox();
 		
 		btnSearch = (Button)getActivity().findViewById(R.id.btnInquiry);
-		btnSearch.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				doSearchTicket(v);
-			}
-		});
 		
 		fromPlace = (EditText)getActivity().findViewById(R.id.fromplace);
 		fromPlace.setSelectAllOnFocus(true);
@@ -140,12 +156,21 @@ public class InquiryFragment extends Fragment{
 		}
 		
 		onLoading = new CustomProgressDialog(getActivity());
+		onLoading.setOnCancelListener(new OnCancelListener() {
+			
+			@Override
+			public void onCancel(DialogInterface dialog) {
+				// TODO Auto-generated method stub
+				httpclient.cancelRequests(getActivity(), true);
+				getStationCode.cancel(true);
+			}
+		});
 	}
 	
 	public void doSearchTicket(View view) {
 	    // Do something in response to button
-		onLoading.show();
-		
+
+		Log.i("begin search ticket :", fromStationCode+"  "+toStationCode);
 		StringBuffer loginurl = new StringBuffer("/otn/lcxxcx/query?");
 		//String loginurl = "/otn/lcxxcx/query?purpose_codes=ADULT&queryDate=2014-05-16&from_station=XAY&to_station=NJH";
 		//RequestParams params = new RequestParams();
@@ -157,11 +182,11 @@ public class InquiryFragment extends Fragment{
 		StringBuffer params = new StringBuffer();
 		params.append("purpose_codes=ADULT");
 		params.append("&queryDate="+departuretime.getText().toString());
-		params.append("&from_station=XAY");
-		params.append("&to_station=NJH");
+		params.append("&from_station="+fromStationCode);
+		params.append("&to_station="+toStationCode);
 		
 		loginurl.append(params);
-		TicketHttpClient.get(loginurl.toString(),null,new AsyncHttpResponseHandler(){
+		TicketHttpClient.get(getActivity(), loginurl.toString(),null,new AsyncHttpResponseHandler(){
 			@Override
 			public void onSuccess(String response) {
 				onLoading.dismiss();
@@ -190,7 +215,63 @@ public class InquiryFragment extends Fragment{
 
 	}
 	
-	
+
+	public class GetStationCodeTask extends AsyncTask<String, String, Boolean> {
+
+		@Override
+		protected Boolean doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			
+			String fromStationName = fromPlace.getText().toString();
+			String toStationName = toPlace.getText().toString();
+			fromStationCode = "";
+			toStationCode = "";
+			Log.i("search station :", fromStationName+"  "+toStationName);
+			
+			try {
+				InputStreamReader inputReader = new InputStreamReader(getActivity().getAssets().open("stations.txt"));
+				BufferedReader bufReader = new BufferedReader(inputReader);
+				String line = bufReader.readLine();
+				while (line.length() > 0){
+					String[] datas = line.split(" ");
+					//Log.i("Compare to ", datas[0]);
+					if(datas[0].equals(fromStationName)){
+						fromStationCode = datas[1];
+					}else if(datas[0].equals(toStationName)){
+						toStationCode = datas[1];
+					}
+					
+					if(fromStationCode.length() >0 && toStationCode.length()>0)
+						break;
+					line = bufReader.readLine();
+				}
+					
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Log.i("search result :", fromStationCode+"  "+toStationCode);
+			if(!(fromStationCode.length() >0 && toStationCode.length()>0))
+				return false;
+			return true;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			//onLoading.dismiss();
+			
+			if(!(fromStationCode.length() >0 && toStationCode.length()>0))
+				return;
+			else
+				doSearchTicket(null);
+		}
+		
+		
+		
+	}
+
 	private void initCheckBox() {
 		// TODO Auto-generated method stub
 		checkall = (CheckBox)getActivity().findViewById(R.id.chooseall);

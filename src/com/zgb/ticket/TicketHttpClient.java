@@ -52,22 +52,22 @@ public class TicketHttpClient {
 	}
 	
 
-  public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+  public static void get(Context context , String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
 	  if(params != null){
 		  Log.i("get params", params.toString());
 	  }
 	  Log.i("get url", getAbsoluteUrl(url));
-	  
-	  httpclient.get(getAbsoluteUrl(url), params, responseHandler);
+	 
+	  httpclient.get(context, getAbsoluteUrl(url), params, responseHandler);
   }
 
-  public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+  public static void post(Context context , String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
 	  if(params != null){
 		  Log.i("post params", params.toString());
 	  }
 	  Log.i("post url", getAbsoluteUrl(url));
 	  
-	  httpclient.post(getAbsoluteUrl(url), params, responseHandler);
+	  httpclient.post(context , getAbsoluteUrl(url), params, responseHandler);
   }
 
   private static String getAbsoluteUrl(String relativeUrl) {

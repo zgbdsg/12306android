@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
+import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
@@ -47,18 +48,13 @@ public class TicketResultActivity extends ListActivity{
 	
 		setListAdapter(dataAdapter);
 	}
-
-
 	
 	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
-		
 	}
-
-
 
 
 	private List<HashMap<String, String>> getListMaps(String result){
@@ -85,7 +81,7 @@ public class TicketResultActivity extends ListActivity{
 			if(!train_class.equals("")) {
 				map.put("trainType", train_class);
 			}else{
-				Log.i("trainType :", ""+train_num_code.charAt(0));
+				//Log.i("trainType :", ""+train_num_code.charAt(0));
 				switch (train_num_code.charAt(0)) {
 				case 'K':
 					map.put("trainType",getString(R.string.kname));

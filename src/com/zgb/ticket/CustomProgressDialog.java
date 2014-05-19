@@ -24,6 +24,8 @@ public class CustomProgressDialog extends ProgressDialog{
 	
 	public static CustomProgressDialog show(Context ctx){
 		CustomProgressDialog d = new CustomProgressDialog(ctx);
+		d.setCancelable(true);
+		d.setCanceledOnTouchOutside(true);
 		Window wd= d.getWindow();
 		LayoutParams lp = wd.getAttributes();
 		lp.alpha = 0.7f;

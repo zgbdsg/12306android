@@ -29,17 +29,11 @@
             android:name="com.zgb.ticket.InquiryActivity"
             android:label="@string/title_activity_inquiry"
             android:parentActivityName="com.zgb.ticket.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zgb.ticket.MainActivity" />
         </activity>
         <activity
             android:name="com.zgb.ticket.TicketResultActivity"
             android:label="@string/title_activity_inquiry_result"
             android:parentActivityName="com.zgb.ticket.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zgb.ticket.MainActivity" />
         </activity>
     </application>
 
