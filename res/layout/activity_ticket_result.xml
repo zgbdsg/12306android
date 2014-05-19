@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="5dp"
     android:orientation="vertical"
     android:paddingLeft="8dp"
     android:paddingRight="8dp" >
@@ -9,14 +10,19 @@
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
+        android:scrollbars="none"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:dividerHeight="8dp"
+        android:layout_marginBottom="5dp"
+        android:divider="@null"
         android:drawSelectorOnTop="false" />
 
     <TextView
         android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:minHeight="5dp"
         android:text="@string/no_data" />
 
 </LinearLayout>

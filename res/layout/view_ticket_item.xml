@@ -2,11 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="15dp"
     android:id="@+id/ticket_list_item"
-    android:layout_marginTop="30dp"
-    android:layout_marginBottom="10dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
+    android:background="@drawable/view_yuan_morelist"
     android:orientation="vertical" >
     
     <LinearLayout android:layout_width="fill_parent"
@@ -26,6 +24,7 @@
         	  android:layout_weight="1"
         	  android:textColor="#ff0033"
         	  android:layout_gravity="right"
+        	  android:paddingRight="3dp"
         	  android:gravity="right"/>
         
         <TextView android:id="@+id/fromStation"
@@ -34,6 +33,7 @@
         	  android:text="南京"
         	  android:layout_weight="1"
         	  android:textColor="#ff0033"
+        	  android:paddingLeft="3dp"
         	  android:layout_gravity="left"/>
         
         <TextView android:id="@+id/period"
@@ -59,6 +59,7 @@
         	  android:layout_height="wrap_content"
         	  android:text="09:30"
         	  android:layout_weight="1"
+        	  android:paddingRight="3dp"
         	  android:layout_gravity="right"
         	  android:gravity="right"/>
         
@@ -67,6 +68,7 @@
         	  android:layout_height="wrap_content"
         	  android:text="西安"
         	  android:layout_weight="1"
+        	  android:paddingLeft="3dp"
         	  android:layout_gravity="left"/>
         
         <TextView android:id="@+id/moneyValue"
@@ -79,8 +81,10 @@
     
     <LinearLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
+            android:id="@+id/slash_line"
+            android:layout_marginLeft="2dip"
+            android:layout_marginRight="2dip"
+            android:orientation="horizontal"
             android:background="@drawable/dotted_line_gray" />
     
     <LinearLayout android:layout_width="fill_parent"

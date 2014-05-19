@@ -1080,9 +1080,10 @@ containing a value of this type.
         public static final int dotted_line_gray=0x7f020057;
         public static final int ic_action_search=0x7f020058;
         public static final int ic_launcher=0x7f020059;
+        public static final int view_yuan_morelist=0x7f02005a;
     }
     public static final class id {
-        public static final int action_aboutus=0x7f050067;
+        public static final int action_aboutus=0x7f050068;
         public static final int action_bar=0x7f05001c;
         public static final int action_bar_activity_content=0x7f050015;
         public static final int action_bar_container=0x7f05001b;
@@ -1094,8 +1095,8 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_search=0x7f050066;
-        public static final int action_settings=0x7f050065;
+        public static final int action_search=0x7f050067;
+        public static final int action_settings=0x7f050066;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int backpart=0x7f050046;
@@ -1167,11 +1168,12 @@ containing a value of this type.
         public static final int showCustom=0x7f050007;
         public static final int showHome=0x7f050004;
         public static final int showTitle=0x7f050006;
+        public static final int slash_line=0x7f050064;
         public static final int split_action_bar=0x7f05001e;
         public static final int startTime=0x7f05005d;
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
-        public static final int ticketInfo=0x7f050064;
+        public static final int ticketInfo=0x7f050065;
         public static final int ticket_list_item=0x7f05005b;
         public static final int title=0x7f05002b;
         public static final int toStation=0x7f050062;

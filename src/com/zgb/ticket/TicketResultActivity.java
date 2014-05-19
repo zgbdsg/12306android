@@ -65,6 +65,7 @@ public class TicketResultActivity extends ListActivity{
 			map.put("period", dataArrays.getJSONObject(i).getString("lishi"));
 			map.put("ticketInfo", "waiting ----");
 			map.put("value", "waiting ----");
+			map.put("slash", "");
 			String train_class = dataArrays.getJSONObject(i).getString("train_class_name");
 			if(!train_class.equals("")) {
 				map.put("trainType", train_class);
