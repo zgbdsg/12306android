@@ -3,9 +3,13 @@ package com.zgb.ticket;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 
 import org.apache.http.Header;
 
@@ -33,6 +37,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -60,6 +67,7 @@ public class InquiryFragment extends Fragment{
 	private OnDateSetListener datelisten;
 	private GetStationCodeTask getStationCode;
 	private CustomProgressDialog onLoading;
+	
 	AsyncHttpClient httpclient = TicketHttpClient.httpclient;
 
 	@Override
@@ -171,7 +179,7 @@ public class InquiryFragment extends Fragment{
 	    // Do something in response to button
 
 		Log.i("begin search ticket :", fromStationCode+"  "+toStationCode);
-		StringBuffer loginurl = new StringBuffer("/otn/lcxxcx/query?");
+		StringBuffer loginurl = new StringBuffer("/otn/leftTicket/query?");
 		//String loginurl = "/otn/lcxxcx/query?purpose_codes=ADULT&queryDate=2014-05-16&from_station=XAY&to_station=NJH";
 		//RequestParams params = new RequestParams();
 		//params.add("purpose_codes", "ADULT");
@@ -180,10 +188,11 @@ public class InquiryFragment extends Fragment{
 		//params.add("to_station", "NJH");
 		
 		StringBuffer params = new StringBuffer();
-		params.append("purpose_codes=ADULT");
-		params.append("&queryDate="+departuretime.getText().toString());
-		params.append("&from_station="+fromStationCode);
-		params.append("&to_station="+toStationCode);
+		
+		params.append("leftTicketDTO.train_date="+departuretime.getText().toString());
+		params.append("&leftTicketDTO.from_station="+fromStationCode);
+		params.append("&leftTicketDTO.to_station="+toStationCode);
+		params.append("&purpose_codes=ADULT");
 		
 		loginurl.append(params);
 		TicketHttpClient.get(getActivity(), loginurl.toString(),null,new AsyncHttpResponseHandler(){
@@ -196,8 +205,11 @@ public class InquiryFragment extends Fragment{
 				shareDataEditor.putString("toPlace", toPlace.getText().toString());
 				shareDataEditor.commit();
 				
+				CommonIntentData.getInstance().setList(getListMaps(response));
 				Intent intent = new Intent(getActivity().getApplicationContext(),TicketResultActivity.class);
-				intent.putExtra("result", response);
+
+				//intent.putExtra("result", (Serializable)getListMaps(response));
+				//Log.i("inquiry :", response);
 				startActivity(intent);
             }
 
@@ -216,6 +228,62 @@ public class InquiryFragment extends Fragment{
 	}
 	
 
+	private List<HashMap<String, Object>> getListMaps(String result){
+		List<HashMap<String, Object>> listmap = new ArrayList<HashMap<String,Object>>(); 
+		JSONObject jsonResult = JSON.parseObject(result);
+		JSONArray jsonData = jsonResult.getJSONArray("data");
+		
+		for(int i=0;i<jsonData.size();i ++){
+			JSONObject arrayItem = jsonData.getJSONObject(i);
+			JSONObject info = arrayItem.getJSONObject("queryLeftNewDTO");
+			TrainInfo trainInfo = new TrainInfo();
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			
+			String train_num_code = info.getString("station_train_code");
+			trainInfo.setTrainNum(train_num_code);
+			trainInfo.setToStation(info.getString("to_station_name"));
+			trainInfo.setFromStation(info.getString("from_station_name"));
+			trainInfo.setArriveTime(info.getString("arrive_time"));
+			trainInfo.setStartTime(info.getString("start_time"));
+			trainInfo.setPeriod(info.getString("lishi"));	
+			trainInfo.setTicketInfo("waiting ----");
+			trainInfo.setTicketValue("waiting ----");
+			
+			String train_class = info.getString("train_class_name");
+			if(!train_class.equals("")) {
+				trainInfo.setTrainType( train_class);
+			}else{
+				//Log.i("trainType :", ""+train_num_code.charAt(0));
+				switch (train_num_code.charAt(0)) {
+				case 'K':
+					trainInfo.setTrainType(getString(R.string.kname));
+					break;
+				case 'T':
+					trainInfo.setTrainType(getString(R.string.tname));
+					break;
+				case 'Z':
+					trainInfo.setTrainType(getString(R.string.zname));
+					break;
+				case 'L':
+					trainInfo.setTrainType(getString(R.string.lname));
+					break;
+				case 'Y':
+					trainInfo.setTrainType(getString(R.string.yname));
+					break;
+				default:
+					trainInfo.setTrainType(getString(R.string.common));
+					break;
+				}
+			}
+			
+			map.put("trainInfo", trainInfo);
+			
+			listmap.add(map);
+
+		}
+		return listmap;
+	}
+	
 	public class GetStationCodeTask extends AsyncTask<String, String, Boolean> {
 
 		@Override
