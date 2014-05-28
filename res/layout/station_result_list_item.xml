@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="horizontal" >
+    <TextView android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:gravity="center"
+        	  android:layout_weight="1"
+        	  android:text="站次"/>
+
+    <TextView android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:layout_weight="1"
+        	  android:gravity="center"
+        	  android:text="车站"/>
+    
+    <TextView android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:layout_weight="1"
+        	  android:gravity="center"
+        	  android:text="到时"/>
+    
+    <TextView android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:layout_weight="1"
+        	  android:gravity="center"
+        	  android:text="发时"/>
+    
+    <TextView android:layout_width="0dp"
+        	  android:layout_height="wrap_content"
+        	  android:layout_weight="1"
+        	  android:gravity="center"
+        	  android:text="停留"/>
+</LinearLayout>

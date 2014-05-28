@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class TrainInfo implements Serializable {
 	/**
-	 * 
+	 * @author zgb
 	 */
 	private static final long serialVersionUID = 1010250520744443426L;
 	String trainNum;

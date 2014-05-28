@@ -10,8 +10,10 @@ import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class TicketListAdapter extends BaseAdapter{
@@ -25,6 +27,7 @@ public class TicketListAdapter extends BaseAdapter{
 		TextView ticketInfo;
 		TextView ticketValue;
 		TextView trainType;
+		LinearLayout ticketListItem;
 	}
 	
 	private Context context; 
@@ -78,6 +81,8 @@ public class TicketListAdapter extends BaseAdapter{
 			holder.trainNum = (TextView)convertView.findViewById(R.id.trainNum);
 			holder.trainType = (TextView)convertView.findViewById(R.id.trainType);
 			
+			holder.ticketListItem = (LinearLayout)convertView.findViewById(R.id.ticket_list_item);
+			
 			convertView.setTag(holder);
 			Log.i("convertview", convertView.toString());
 		}
@@ -92,6 +97,14 @@ public class TicketListAdapter extends BaseAdapter{
 		 holder.trainNum.setText(trainInfo.getTrainNum());
 		 holder.trainType.setText(trainInfo.getTrainType());
 		
+		 holder.ticketListItem.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		return convertView;
 	}
 
