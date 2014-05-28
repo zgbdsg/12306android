@@ -1,4 +1,4 @@
-package com.zgb.ticket;
+package com.zgb.ticket.ui;
 
 public class UserHomeFragment {
 

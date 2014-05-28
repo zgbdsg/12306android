@@ -1,4 +1,4 @@
-package com.zgb.ticket;
+package com.zgb.ticket.ui;
 
 import org.apache.http.Header;
 
@@ -9,6 +9,11 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.BinaryHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.zgb.ticket.R;
+import com.zgb.ticket.R.id;
+import com.zgb.ticket.R.layout;
+import com.zgb.ticket.R.string;
+import com.zgb.ticket.util.TicketHttpClient;
 
 import android.support.v4.app.Fragment;  
 import android.content.Intent;

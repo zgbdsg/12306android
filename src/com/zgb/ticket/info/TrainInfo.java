@@ -1,4 +1,4 @@
-package com.zgb.ticket;
+package com.zgb.ticket.info;
 
 import java.io.Serializable;
 

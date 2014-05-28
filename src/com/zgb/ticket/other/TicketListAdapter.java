@@ -1,7 +1,10 @@
-package com.zgb.ticket;
+package com.zgb.ticket.other;
 
 import java.util.HashMap;
 import java.util.List;
+
+import com.zgb.ticket.R;
+import com.zgb.ticket.info.TrainInfo;
 
 import android.content.Context;
 import android.util.Log;

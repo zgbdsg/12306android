@@ -1,8 +1,14 @@
-package com.zgb.ticket;
+package com.zgb.ticket.ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import com.zgb.ticket.R;
+import com.zgb.ticket.R.id;
+import com.zgb.ticket.R.layout;
+import com.zgb.ticket.other.TicketListAdapter;
+import com.zgb.ticket.util.CommonIntentData;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

@@ -1,4 +1,4 @@
-package com.zgb.ticket;
+package com.zgb.ticket.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;

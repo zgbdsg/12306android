@@ -1,4 +1,6 @@
-package com.zgb.ticket;
+package com.zgb.ticket.other;
+
+import com.zgb.ticket.R;
 
 import android.app.ProgressDialog;
 import android.content.Context;

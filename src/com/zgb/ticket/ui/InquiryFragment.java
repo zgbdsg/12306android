@@ -1,4 +1,4 @@
-package com.zgb.ticket;
+package com.zgb.ticket.ui;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,6 +42,14 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.zgb.ticket.R;
+import com.zgb.ticket.R.id;
+import com.zgb.ticket.R.layout;
+import com.zgb.ticket.R.string;
+import com.zgb.ticket.info.TrainInfo;
+import com.zgb.ticket.other.CustomProgressDialog;
+import com.zgb.ticket.util.CommonIntentData;
+import com.zgb.ticket.util.TicketHttpClient;
 
 public class InquiryFragment extends Fragment{
 	

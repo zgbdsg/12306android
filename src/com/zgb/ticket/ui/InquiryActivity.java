@@ -1,4 +1,9 @@
-package com.zgb.ticket;
+package com.zgb.ticket.ui;
+
+import com.zgb.ticket.R;
+import com.zgb.ticket.R.id;
+import com.zgb.ticket.R.layout;
+import com.zgb.ticket.R.menu;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;

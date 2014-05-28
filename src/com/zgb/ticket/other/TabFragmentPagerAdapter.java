@@ -1,4 +1,8 @@
-package com.zgb.ticket;
+package com.zgb.ticket.other;
+import com.zgb.ticket.ui.InquiryFragment;
+import com.zgb.ticket.ui.LoginFragment;
+import com.zgb.ticket.ui.OrderFragment;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;

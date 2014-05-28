@@ -1,4 +1,4 @@
-package com.zgb.ticket;
+package com.zgb.ticket.util;
 
 import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;

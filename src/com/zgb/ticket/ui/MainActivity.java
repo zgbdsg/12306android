@@ -1,4 +1,4 @@
-package com.zgb.ticket;
+package com.zgb.ticket.ui;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -14,6 +14,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.loopj.android.http.AsyncHttpClient;
+import com.zgb.ticket.R;
+import com.zgb.ticket.R.id;
+import com.zgb.ticket.R.layout;
+import com.zgb.ticket.R.menu;
+import com.zgb.ticket.R.string;
+import com.zgb.ticket.other.TabFragmentPagerAdapter;
+import com.zgb.ticket.util.TicketHttpClient;
 
 public class MainActivity extends ActionBarActivity {
 

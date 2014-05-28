@@ -1,4 +1,7 @@
-package com.zgb.ticket;
+package com.zgb.ticket.ui;
+
+import com.zgb.ticket.R;
+import com.zgb.ticket.R.layout;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
